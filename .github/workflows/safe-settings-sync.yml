@@ -23,5 +23,4 @@ jobs:
           git clone https://github.com/github/safe-settings.git /tmp/safe-settings-tool
           cd /tmp/safe-settings-tool
           npm ci
-          npm run build
           npm run full-sync
