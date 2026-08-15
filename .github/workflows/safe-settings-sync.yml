@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Run Sync
         env:
@@ -19,5 +19,8 @@ jobs:
           ADMIN_REPO: ".github"
           CONFIG_PATH: "safe-settings"
         run: |
-          git clone https://github.com tool-dir
-          cd tool-dir && npm ci && npm run build && npm run full-sync
+          rm -rf /tmp/safe-settings-tool
+          git clone --branch 2.1.18 https://github.com/github/safe-settings.git /tmp/safe-settings-tool
+          cd /tmp/safe-settings-tool
+          npm ci
+          npm run full-sync
