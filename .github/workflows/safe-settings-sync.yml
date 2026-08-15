@@ -21,12 +21,10 @@ jobs:
           node-version: 22
       - run: npm ci
         working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
-      - name: Run Sync
+      - run: npm run full-sync
+        working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
         env:
           APP_ID: ${{ secrets.APP_ID }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           ADMIN_REPO: ".github"
           CONFIG_PATH: "safe-settings"
-        run: |
-          cd ${{ env.SAFE_SETTINGS_CODE_DIR }}
-          npm run full-sync
