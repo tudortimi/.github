@@ -30,5 +30,6 @@ jobs:
           owner: "tudortimi"
           repositories: "all"
           delete-branch-on-merge: true
+          allow-merge-commit: true
           allow-squash-merge: false
           allow-rebase-merge: false
