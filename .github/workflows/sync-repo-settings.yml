@@ -33,4 +33,4 @@ jobs:
           allow-merge-commit: true
           allow-squash-merge: false
           allow-rebase-merge: false
-          rulesets-file: "./config/rulesets/tag-create-protection.json, ./config/rulesets/tag-delete-protection.json"
+          rulesets-file: "./config/rulesets/tag-protection.json"
