@@ -1,0 +1,17 @@
+name: sync-repo-settings
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync-repo-settings:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      
+      - name: Update Repository Settings
+        uses: joshjohanning/bulk-github-repo-settings-sync-action@v1
+        with:
+          github-token: ${{ secrets.REPO_ADMIN_PAT }}
