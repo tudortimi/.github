@@ -31,3 +31,4 @@ jobs:
           repositories: "all"
           delete-branch-on-merge: true
           allow-squash-merge: false
+          allow-rebase-merge: false
