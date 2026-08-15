@@ -6,21 +6,25 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      SAFE_SETTINGS_VERSION: 2.1.18
+      SAFE_SETTINGS_CODE_DIR: ${{ github.workspace }}/.safe-settings-code
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: github/safe-settings
+          ref: ${{ env.SAFE_SETTINGS_VERSION }}
+          path: ${{ env.SAFE_SETTINGS_CODE_DIR }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-
-      - name: Run Sync
+      - run: npm ci
+        working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
+      - run: npm run full-sync
+        working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
         env:
           APP_ID: ${{ secrets.APP_ID }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           ADMIN_REPO: ".github"
           CONFIG_PATH: "safe-settings"
-        run: |
-          rm -rf /tmp/safe-settings-tool
-          git clone --branch 2.1.18 https://github.com/github/safe-settings.git /tmp/safe-settings-tool
-          cd /tmp/safe-settings-tool
-          npm ci
-          npm run full-sync
