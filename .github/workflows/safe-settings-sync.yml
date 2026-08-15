@@ -20,7 +20,7 @@ jobs:
           CONFIG_PATH: "safe-settings"
         run: |
           rm -rf /tmp/safe-settings-tool
-          git clone https://github.com/github/safe-settings.git /tmp/safe-settings-tool
+          git clone --branch 2.1.21 https://github.com/github/safe-settings.git /tmp/safe-settings-tool
           cd /tmp/safe-settings-tool
           npm ci
           npm run full-sync
