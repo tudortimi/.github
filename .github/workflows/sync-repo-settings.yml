@@ -15,3 +15,4 @@ jobs:
         uses: joshjohanning/bulk-github-repo-settings-sync-action@v1
         with:
           github-token: ${{ secrets.REPO_ADMIN_PAT }}
+          delete-branch-on-merge: true
