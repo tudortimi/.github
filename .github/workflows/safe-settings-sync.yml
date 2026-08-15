@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SAFE_SETTINGS_VERSION: 2.1.18
-      SAFE_SETTINGS_CODE_DIR: /tmp/safe-settings-tool
+      SAFE_SETTINGS_CODE_DIR: ${{ github.workspace }}/.safe-settings-code
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
