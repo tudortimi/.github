@@ -23,7 +23,7 @@ jobs:
           owner: "tudortimi"
       
       - name: Update Repository Settings
-        uses: joshjohanning/bulk-github-repo-settings-sync-action@v1
+        uses: joshjohanning/bulk-github-repo-settings-sync-action@v2
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           dry-run: ${{ github.event_name == 'pull_request' }}
