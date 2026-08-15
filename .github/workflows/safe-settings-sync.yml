@@ -11,6 +11,11 @@ jobs:
       SAFE_SETTINGS_CODE_DIR: ${{ github.workspace }}/.safe-settings-code
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: github/safe-settings
+          ref: ${{ env.SAFE_SETTINGS_VERSION }}
+          path: ${{ env.SAFE_SETTINGS_CODE_DIR }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -22,8 +27,6 @@ jobs:
           ADMIN_REPO: ".github"
           CONFIG_PATH: "safe-settings"
         run: |
-          rm -rf /tmp/safe-settings-tool
-          git clone --branch ${{ env.SAFE_SETTINGS_VERSION }} https://github.com/github/safe-settings.git ${{ env.SAFE_SETTINGS_CODE_DIR }}
           cd ${{ env.SAFE_SETTINGS_CODE_DIR }}
           npm ci
           npm run full-sync
