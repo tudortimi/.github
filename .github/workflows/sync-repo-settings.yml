@@ -15,4 +15,6 @@ jobs:
         uses: joshjohanning/bulk-github-repo-settings-sync-action@v1
         with:
           github-token: ${{ secrets.REPO_ADMIN_PAT }}
+          owner: "tudortimi"
+          repositories: "all"
           delete-branch-on-merge: true
