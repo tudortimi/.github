@@ -19,7 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-
+      - run: npm ci
+        working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
       - name: Run Sync
         env:
           APP_ID: ${{ secrets.APP_ID }}
@@ -28,5 +29,4 @@ jobs:
           CONFIG_PATH: "safe-settings"
         run: |
           cd ${{ env.SAFE_SETTINGS_CODE_DIR }}
-          npm ci
           npm run full-sync
