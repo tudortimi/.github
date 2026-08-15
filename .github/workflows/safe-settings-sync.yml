@@ -6,6 +6,8 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      SAFE_SETTINGS_VERSION: 2.1.18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,7 +22,7 @@ jobs:
           CONFIG_PATH: "safe-settings"
         run: |
           rm -rf /tmp/safe-settings-tool
-          git clone --branch 2.1.18 https://github.com/github/safe-settings.git /tmp/safe-settings-tool
+          git clone --branch ${{ env.SAFE_SETTINGS_VERSION }} https://github.com/github/safe-settings.git /tmp/safe-settings-tool
           cd /tmp/safe-settings-tool
           npm ci
           npm run full-sync
