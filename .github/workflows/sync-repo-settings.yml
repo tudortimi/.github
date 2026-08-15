@@ -30,3 +30,4 @@ jobs:
           owner: "tudortimi"
           repositories: "all"
           delete-branch-on-merge: true
+          allow-squash-merge: false
