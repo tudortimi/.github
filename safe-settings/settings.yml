@@ -4,3 +4,5 @@ repository:
     allow_squash_merge: false
     allow_rebase_merge: false
     has_wiki: false
+
+    # Dummy
