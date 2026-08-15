@@ -19,5 +19,9 @@ jobs:
           ADMIN_REPO: ".github"
           CONFIG_PATH: "safe-settings"
         run: |
-          git clone https://github.com/github/safe-settings.git
-          cd safe-settings && npm ci && npm run build && npm run full-sync
+          rm -rf /tmp/safe-settings-tool
+          git clone https://github.com/github/safe-settings.git /tmp/safe-settings-tool
+          cd /tmp/safe-settings-tool
+          npm ci
+          npm run build
+          npm run full-sync
