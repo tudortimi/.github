@@ -28,3 +28,6 @@ jobs:
           github-token: ${{ steps.app-token.outputs.token }}
           dry-run: ${{ github.event_name == 'pull_request' }}
           repositories-file: ./config/settings-config.yml
+
+          # dummy          
+          
