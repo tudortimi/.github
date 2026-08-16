@@ -1,0 +1,12 @@
+rules:
+  - selector:
+      all: true
+    settings:
+      delete-branch-on-merge: true
+      allow-merge-commit: true
+      allow-squash-merge: false
+      allow-rebase-merge: false
+      rulesets-file:
+        - ./config/rulesets/tag-protection.json
+        - ./config/rulesets/branch-protection.json
+        - ./config/rulesets/branch-protection-no-bypass.json
