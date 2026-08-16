@@ -22,6 +22,14 @@ jobs:
           private-key: ${{ secrets.PRIVATE_KEY }}
           owner: "tudortimi"
       
+      - name: Fetch All User Repositories
+        id: get-repos
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          REPOS=$(gh repo list tudortimi --limit 1000 --json nameWithOwner -q '[.[].nameWithOwner] | join(",")')
+          echo "Discovered repositories: $REPOS"
+      
       - name: Update Repository Settings
         uses: joshjohanning/bulk-github-repo-settings-sync-action@v2
         with:
