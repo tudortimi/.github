@@ -44,4 +44,5 @@ jobs:
           allow-merge-commit: true
           allow-squash-merge: false
           allow-rebase-merge: false
+          wiki: false
           rulesets-file: "./config/rulesets/tag-protection.json, ./config/rulesets/branch-protection.json, ./config/rulesets/branch-protection-no-bypass.json"
