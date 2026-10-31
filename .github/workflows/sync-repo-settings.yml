@@ -38,3 +38,18 @@ jobs:
           allow-rebase-merge: false
           wiki: false
           rulesets-file: "./config/rulesets/tag-protection.json, ./config/rulesets/branch-protection.json, ./config/rulesets/branch-protection-no-bypass.json"
+
+  build:
+    if: always()
+    needs: sync-repo-settings
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Require all repository sync jobs to pass
+        env:
+          SYNC_RESULT: ${{ needs.sync-repo-settings.result }}
+        run: |
+          if [[ "$SYNC_RESULT" != "success" ]]; then
+            echo "Repository settings sync did not succeed: $SYNC_RESULT"
+            exit 1
+          fi
