@@ -25,21 +25,13 @@ jobs:
           private-key: ${{ secrets.PRIVATE_KEY }}
           owner: ${{ matrix.owner }}
       
-      - name: Fetch All Repositories
-        id: get-repos
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: |
-          REPOS=$(gh repo list ${{ matrix.owner }} --limit 1000 --json nameWithOwner -q '[.[].nameWithOwner] | join(",")')
-          echo "Discovered repositories: $REPOS"
-          echo "repo_list=$REPOS" >> $GITHUB_OUTPUT
-      
       - name: Update Repository Settings
         uses: joshjohanning/bulk-github-repo-settings-sync-action@v2
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           dry-run: ${{ github.event_name == 'pull_request' }}
-          repositories: ${{ steps.get-repos.outputs.repo_list }}
+          owner: ${{ matrix.owner }}
+          repositories: all
           delete-branch-on-merge: true
           allow-merge-commit: true
           allow-squash-merge: false
